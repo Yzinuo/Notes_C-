@@ -1,0 +1,4 @@
+在C++中，函数是可以返回局部变量的，但需要注意的是，返回的是局部变量的**副本。**这是因为在函数返回时，局部变量会被销毁，如果直接返回局部变量的引用或指针，那么这个引用或指针将指向一个已经被销毁的对象，这将导致未定义的行为[3](https://9to5answer.com/c-returning-reference-to-local-variable)。
+然而，如果函数返回类型是值类型（例如，int、double、std::string等），那么在函数返回时会创建局部变量的一个副本，并将这个副本返回给调用者[1](https://www.geeksforgeeks.org/how-to-return-local-variables-from-a-function-in-c/)[2](https://stackoverflow.com/questions/36528927/returning-a-local-variable-in-c)。这个副本在函数返回后仍然存在，因此你可以在函数外部使用它。
+例如，在你的代码中，**string ret = s;** 这行代码创建了一个新的字符串 **ret**，并将字符串 **s** 的值复制给了它。当你从函数中返回 **ret** 时，你实际上返回的是 **ret** 的一个副本。这个副本在函数返回后仍然存在，因此你可以在函数外部使用它。
+所以，在你的代码中，尽管 **ret** 是一个局部变量，但你可以安全地返回它，并且不会导致任何问题。这就是为什么你能够返回一个局部变量的原因。
